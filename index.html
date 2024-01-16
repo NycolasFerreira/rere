@@ -14,13 +14,18 @@
 
     <script>
         // Código JavaScript para carregar e exibir dados JSON
-        fetch(aaa.json)
-            .then(response => response.json())
+        fetch('aaa.json')  // Coloque o nome do arquivo entre aspas simples ou duplas
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Erro ao carregar o arquivo JSON');
+                }
+                return response.json();
+            })
             .then(data => {
                 // Manipule os dados e exiba-os como necessário
                 document.getElementById('dados-json').innerText = JSON.stringify(data, null, 2);
             })
-            .catch(error => console.error('Erro ao carregar o JSON:', error));
+            .catch(error => console.error('Erro:', error.message));
     </script>
 </body>
 </html>
